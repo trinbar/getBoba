@@ -14,7 +14,8 @@ class ModelTests(TestCase):
         )
 
         self.assertEqual(user.email, email)
-        self.assertTrue(user.check_password, password) #check_password is a built-in helper
+        # check_password is a built-in helper
+        self.assertTrue(user.check_password, password)
 
     def test_new_user_email_normalized(self):
         """Test the email for a new user is normalized"""
@@ -34,3 +35,6 @@ class ModelTests(TestCase):
             'test@gmail.com',
             'ijustwantboba33'
         )
+
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_staff)

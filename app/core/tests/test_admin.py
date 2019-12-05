@@ -9,7 +9,7 @@ class AdminSiteTests(TestCase):
         self.client = Client()
         self.admin_user = get_user_model().objects.create_superuser(
             email='admin@gmail.com',
-            password = 'testpassword23'
+            password ='testpassword23'
         )
         self.client.force_login(self.admin_user)
         self.user = get_user_model().objects.create_user(
@@ -20,8 +20,10 @@ class AdminSiteTests(TestCase):
 
     def test_users_listed(self):
         """Tests that users are listed on user page"""
-        url = reverse('admin:core_user_changelist')  # generates url for list user page
-        res = self.client.get(url) # uses test client to perform HTTP GET on url
+        # generates url for list user page
+        url = reverse('admin:core_user_changelist')
+        # uses test client to perform HTTP GET on url
+        res = self.client.get(url)
 
         # check for status code 200 and checks content
         self.assertContains(res, self.user.name)
@@ -42,4 +44,3 @@ class AdminSiteTests(TestCase):
         res = self.client.get(url)
         
         self.assertEqual(res.status_code, 200)
-
